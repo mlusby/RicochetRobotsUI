@@ -1,0 +1,24 @@
+.box
+{
+	border: 1px solid black;
+	width: 30px;
+	height: 30px;
+	display: inline-block;
+	background-color: lightgray;
+	float: left;
+}
+.row
+{
+	clear:both;	
+}
+.circle
+{
+	border-radius: 50%;
+	display: inline-block;
+	background-image: -webkit-radial-gradient(45px 45px, circle cover, blue, lightblue);
+	width: 28px;
+	height: 28px;
+	position: absolute;
+	left: 42px;
+	top: 10px;
+}
