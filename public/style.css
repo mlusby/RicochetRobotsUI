@@ -1,0 +1,32 @@
+.box
+{
+	border: 2px solid lightgray;
+	width: 30px;
+	height: 30px;
+	display: inline-block;
+	float: left;
+}
+.row
+{
+	clear:both;	
+}
+.circle
+{
+	border-radius: 50%;
+	display: inline-block;
+	background-image: -webkit-radial-gradient(45px 45px, circle cover, blue, lightblue);
+	width: 24px;
+	height: 24px;
+	position: absolute;
+	left: 47px;
+	top: 13px;
+}
+.wall
+{
+	width: 8px;
+	height: 38px;
+	background-color: black;
+	position: absolute;
+	left: 72px;
+	top: 40px;
+}
