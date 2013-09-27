@@ -1,3 +1,7 @@
+#game-board
+{
+	width: 544px;
+}
 .box
 {
 	border: 2px solid lightgray;
@@ -18,6 +22,7 @@
 .row
 {
 	clear:both;	
+	display: inline-block;
 }
 .robot
 {
@@ -47,7 +52,7 @@
 }
 .yellow-robot
 {
-	background-image: -webkit-radial-gradient(45px 45px, circle cover, yellow, lightyellow);
+	background-image: -webkit-radial-gradient(45px 45px, circle cover, orange, yellow);
 	left: 115px;
 	top: 115px;
 }
