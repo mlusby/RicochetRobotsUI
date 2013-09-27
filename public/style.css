@@ -6,6 +6,15 @@
 	display: inline-block;
 	float: left;
 }
+#row1 .box
+{
+	border-top: 2px solid black;
+}
+.center-box
+{
+	background-color: black;
+	border: 2px solid black;
+}
 .row
 {
 	clear:both;	
@@ -29,4 +38,40 @@
 	position: absolute;
 	left: 72px;
 	top: 40px;
+}
+.top-wall
+{
+	width: 548px;
+	height: 4px;
+	background-color: black;
+	position: absolute;
+	left: 6px;
+	top: 6px;
+}
+.bottom-wall
+{
+	width: 548px;
+	height: 4px;
+	background-color: black;
+	position: absolute;
+	left: 6px;
+	top: 550px;
+}
+.left-wall
+{
+	width: 4px;
+	height: 548px;
+	background-color: black;
+	position: absolute;
+	left: 6px;
+	top: 6px;
+}
+.right-wall
+{
+	width: 4px;
+	height: 548px;
+	background-color: black;
+	position: absolute;
+	left: 550px;
+	top: 6px;
 }
