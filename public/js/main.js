@@ -1,1 +1,1 @@
-$(function(){$(".circle").draggable();});
+$(function(){$(".robot").draggable();});

@@ -19,17 +19,39 @@
 {
 	clear:both;	
 }
-.circle
+.robot
 {
-	border-radius: 50%;
 	display: inline-block;
-	background-image: -webkit-radial-gradient(45px 45px, circle cover, blue, lightblue);
+	border-radius: 50%;
 	width: 24px;
 	height: 24px;
 	position: absolute;
+}
+.blue-robot
+{
+	background-image: -webkit-radial-gradient(45px 45px, circle cover, blue, lightblue);
 	left: 47px;
 	top: 13px;
 }
+.red-robot
+{
+	background-image: -webkit-radial-gradient(45px 45px, circle cover, red, pink);
+	left: 115px;
+	top: 47px;
+}
+.green-robot
+{
+	background-image: -webkit-radial-gradient(45px 45px, circle cover, green, lightgreen);
+	left: 47px;
+	top: 115px;
+}
+.yellow-robot
+{
+	background-image: -webkit-radial-gradient(45px 45px, circle cover, yellow, lightyellow);
+	left: 115px;
+	top: 115px;
+}
+
 .wall
 {
 	width: 8px;
