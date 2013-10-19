@@ -17,7 +17,7 @@ $(function(){
 	initBoard(boardLayout);
 });
 var boardLayout = {
-	blueRobot : [0,1],
+	blueRobot : [3,1],
 	redRobot : [1,2],
 	yellowRobot : [3,4],
 	greenRobot : [5,6]
