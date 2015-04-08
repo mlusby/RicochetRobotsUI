@@ -29,7 +29,7 @@ var initBoard = function (board) {
 	setRobotLocation($("#green-robot"),board.greenRobot);
 };
 var setRobotLocation = function(robot, coords) {
-	var h = (coords[0] * 34) + 13,
-		v = (coords[1] * 34) + 13;
+	var h = (coords[0] * 34) + 5,
+		v = (coords[1] * 34) + 5;
 	robot.css({"left": h, "top": v});
 };
