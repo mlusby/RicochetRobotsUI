@@ -21,16 +21,43 @@ var boardLayout = {
 	redRobot : [1,2],
 	yellowRobot : [3,4],
 	greenRobot : [5,6],
-	board : [9,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3]
+	board : [
+		9,1,1,3,9,1,1,1,1,5,3,9,1,1,1,3,
+		8,0,0,0,0,2,12,0,0,3,8,0,0,0,0,2,
+		8,4,0,0,0,0,1,0,0,0,0,6,8,0,0,2,
+		8,3,8,0,0,4,0,0,0,0,0,1,0,0,0,6,
+		8,0,0,0,2,9,0,0,0,0,0,0,0,0,0,3,
+		8,0,6,8,0,0,0,0,0,0,0,0,2,12,0,2,
+		12,0,1,0,0,0,0,4,4,0,4,0,0,1,0,2,
+		9,0,0,0,0,0,2,9,3,10,9,0,0,0,0,2,
+		8,0,0,0,0,0,2,12,6,8,0,0,4,0,0,2,
+		8,4,0,2,12,0,0,1,1,0,0,0,3,8,0,6,
+		8,3,8,0,1,0,0,0,2,12,0,0,0,0,0,3,
+		12,0,0,0,0,0,0,0,0,1,0,0,0,0,0,2,
+		9,0,0,0,0,0,4,0,0,0,0,0,0,0,0,2,
+		8,0,0,0,0,2,9,0,0,4,0,0,0,0,6,10,
+		8,0,6,8,0,0,0,0,2,9,0,0,0,0,1,2,
+		12,4,5,6,12,4,4,4,4,4,6,12,4,4,4,6
+	]
 };
 var initBoard = function (board) {
 	setRobotLocation($("#blue-robot"),board.blueRobot);
 	setRobotLocation($("#red-robot"),board.redRobot);
 	setRobotLocation($("#yellow-robot"),board.yellowRobot);
 	setRobotLocation($("#green-robot"),board.greenRobot);
+	var row = $("#game-board #row1");
+	var square = row.find(".box:first");
 	for (var i = 0 ; i < board.board.length ; i++){
-		var binary = board.board[i].toString(2);
-		if (binary & 1) { $("#game-board #row1 .box").css("border-top","2px solid black"); }
+		var binary = board.board[i];
+		if (binary & 1) { square.css("border-top","2px solid black"); }
+		if (binary & 2) { square.css("border-right","2px solid black"); }
+		if (binary & 4) { square.css("border-bottom","2px solid black"); }
+		if (binary & 8) { square.css("border-left","2px solid black"); }
+		square = square.next();
+		if (square.length === 0){
+			row = row.next();
+			square = row.find(".box:first");
+		}
 	}
 };
 var setRobotLocation = function(robot, coords) {
