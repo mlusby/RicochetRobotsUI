@@ -4,7 +4,7 @@
   position: relative;
 }
 
-/* line 7, ../../sass/style.scss */
+/* line 8, ../../sass/style.scss */
 .box {
   border: 2px solid #eee;
   width: 30px;
@@ -13,24 +13,19 @@
   float: left;
 }
 
-/* line 15, ../../sass/style.scss */
-#row1 .box {
-  border-top: 2px solid black;
-}
-
-/* line 19, ../../sass/style.scss */
+/* line 16, ../../sass/style.scss */
 .center-box {
   background-color: black;
   border: 2px solid black;
 }
 
-/* line 24, ../../sass/style.scss */
+/* line 21, ../../sass/style.scss */
 .row {
   clear: both;
   display: inline-block;
 }
 
-/* line 29, ../../sass/style.scss */
+/* line 26, ../../sass/style.scss */
 .robot {
   display: inline-block;
   border-radius: 50%;
@@ -39,35 +34,35 @@
   position: absolute;
 }
 
-/* line 37, ../../sass/style.scss */
+/* line 34, ../../sass/style.scss */
 #blue-robot {
   background-image: -webkit-radial-gradient(45px 45px, circle cover, blue, lightblue);
   left: 47px;
   top: 13px;
 }
 
-/* line 43, ../../sass/style.scss */
+/* line 40, ../../sass/style.scss */
 #red-robot {
   background-image: -webkit-radial-gradient(45px 45px, circle cover, red, pink);
   left: 115px;
   top: 47px;
 }
 
-/* line 49, ../../sass/style.scss */
+/* line 46, ../../sass/style.scss */
 #green-robot {
   background-image: -webkit-radial-gradient(45px 45px, circle cover, green, lightgreen);
   left: 47px;
   top: 115px;
 }
 
-/* line 55, ../../sass/style.scss */
+/* line 52, ../../sass/style.scss */
 #yellow-robot {
   background-image: -webkit-radial-gradient(45px 45px, circle cover, orange, yellow);
   left: 115px;
   top: 115px;
 }
 
-/* line 62, ../../sass/style.scss */
+/* line 59, ../../sass/style.scss */
 .vwall {
   width: 4px;
   height: 38px;
@@ -75,7 +70,7 @@
   position: absolute;
 }
 
-/* line 69, ../../sass/style.scss */
+/* line 66, ../../sass/style.scss */
 .hwall {
   width: 38px;
   height: 4px;
@@ -83,67 +78,67 @@
   position: absolute;
 }
 
-/* line 76, ../../sass/style.scss */
+/* line 73, ../../sass/style.scss */
 #wall1 {
   left: 142px;
   top: 40px;
 }
 
-/* line 81, ../../sass/style.scss */
+/* line 78, ../../sass/style.scss */
 #wall2 {
   left: 142px;
   top: 40px;
 }
 
-/* line 86, ../../sass/style.scss */
+/* line 83, ../../sass/style.scss */
 #wall3 {
   left: 40px;
   top: 74px;
 }
 
-/* line 91, ../../sass/style.scss */
+/* line 88, ../../sass/style.scss */
 #wall4 {
   left: 74;
   top: 74px;
 }
 
-/* line 96, ../../sass/style.scss */
+/* line 93, ../../sass/style.scss */
 #wall5 {
   left: 238px;
   top: 108px;
 }
 
-/* line 101, ../../sass/style.scss */
+/* line 98, ../../sass/style.scss */
 #wall6 {
   left: 142px;
   top: 40px;
 }
 
-/* line 106, ../../sass/style.scss */
+/* line 103, ../../sass/style.scss */
 #wall7 {
   left: 142px;
   top: 40px;
 }
 
-/* line 111, ../../sass/style.scss */
+/* line 108, ../../sass/style.scss */
 #wall8 {
   left: 142px;
   top: 40px;
 }
 
-/* line 116, ../../sass/style.scss */
+/* line 113, ../../sass/style.scss */
 #wall9 {
   left: 142px;
   top: 40px;
 }
 
-/* line 121, ../../sass/style.scss */
+/* line 118, ../../sass/style.scss */
 #wall10 {
   left: 142px;
   top: 40px;
 }
 
-/* line 126, ../../sass/style.scss */
+/* line 123, ../../sass/style.scss */
 #top-wall {
   width: 548px;
   height: 4px;
@@ -153,7 +148,7 @@
   top: 6px;
 }
 
-/* line 135, ../../sass/style.scss */
+/* line 132, ../../sass/style.scss */
 #bottom-wall {
   width: 548px;
   height: 4px;
@@ -163,7 +158,7 @@
   top: 550px;
 }
 
-/* line 144, ../../sass/style.scss */
+/* line 141, ../../sass/style.scss */
 #left-wall {
   width: 4px;
   height: 548px;
@@ -173,7 +168,7 @@
   top: 6px;
 }
 
-/* line 153, ../../sass/style.scss */
+/* line 150, ../../sass/style.scss */
 #right-wall {
   width: 4px;
   height: 548px;
