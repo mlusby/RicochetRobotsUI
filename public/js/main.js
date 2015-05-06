@@ -11,7 +11,21 @@ $(function(){
 			}
 		}
 	});
-	$("#red-robot").draggable({ containment: "#game-board", scroll: false, grid: [34,34] });
+	$("#red-robot").draggable({ 
+		containment: "#game-board",
+		scroll: false, 
+		grid: [34,34], 
+		start: function(e){ 	
+			console.log(e);
+		}, 
+		drag: function(e) {
+			console.log(e);
+			//console.log("Diff x: " + e.offsetX + "\nDiff y: " + e.offsetY );
+		},
+		stop: function(e) {
+			updateRobotLocation($(e.target), boardLayout.redRobot);
+		}
+	});
 	$("#yellow-robot").draggable({ containment: "#game-board", scroll: false, grid: [34,34] });
 	$("#green-robot").draggable({ containment: "#game-board", scroll: false, grid: [34,34] });
 	initBoard(boardLayout);
@@ -64,4 +78,8 @@ var setRobotLocation = function(robot, coords) {
 	var h = (coords[0] * 34) + 5,
 		v = (coords[1] * 34) + 5;
 	robot.css({"left": h, "top": v});
+};
+var updateRobotLocation = function(robot, coords) {
+	coords[0] = (parseInt(robot.css("left")) - 5) / 34 ;
+	coords[1] = (parseInt(robot.css("top")) - 5) / 34 ;
 };
