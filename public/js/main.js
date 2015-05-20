@@ -31,22 +31,22 @@ $(function(){
 				setRobotLocation($("#red-robot"),boardLayout.redRobot);
 			}
 			else if (h > 0 && h > v) {
-				var nextSpot = moveRightCoords( boardLayout.board, getRobotLocation( $(e.target) ) );
+				var nextSpot = moveRightCoords( boardLayout.board, boardLayout.redRobot );
 				setRobotLocation($(e.target), nextSpot);
 				boardLayout.redRobot = nextSpot;
 			}
 			else if (h < 0 && h < v) {
-				var nextSpot = moveLeftCoords( boardLayout.board, getRobotLocation( $(e.target) ) );
+				var nextSpot = moveLeftCoords( boardLayout.board, boardLayout.redRobot );
 				setRobotLocation($(e.target), nextSpot);
 				boardLayout.redRobot = nextSpot;
 			}
 			else if (v > 0) {
-				var nextSpot = moveUpCoords( boardLayout.board, getRobotLocation( $(e.target) ) );
+				var nextSpot = moveDownCoords( boardLayout.board, boardLayout.redRobot);
 				setRobotLocation($(e.target), nextSpot);
 				boardLayout.redRobot = nextSpot;
 			}
 			else {
-				var nextSpot = moveDownCoords( boardLayout.board, getRobotLocation( $(e.target) ) );
+				var nextSpot = moveUpCoords( boardLayout.board, getRobotLocation( $(e.target) ) );
 				setRobotLocation($(e.target), nextSpot);
 				boardLayout.redRobot = nextSpot;
 			}
@@ -118,6 +118,39 @@ var moveRightCoords = function(board, location) {
 	binary = board[getBoardIndex(nextSpot)];
 	while (!(binary & 2)){
 		nextSpot[0] = nextSpot[0] + 1;
+		binary = board[getBoardIndex(nextSpot)];
+	}
+	return nextSpot;
+}
+var moveLeftCoords = function(board, location) { 
+	//return [8, location[1]];
+	var destination = [];
+	var nextSpot = location.slice();
+	binary = board[getBoardIndex(nextSpot)];
+	while (!(binary & 8)){
+		nextSpot[0] = nextSpot[0] - 1;
+		binary = board[getBoardIndex(nextSpot)];
+	}
+	return nextSpot;
+}
+var moveUpCoords = function(board, location) { 
+	//return [8, location[1]];
+	var destination = [];
+	var nextSpot = location.slice();
+	binary = board[getBoardIndex(nextSpot)];
+	while (!(binary & 1)){
+		nextSpot[1] = nextSpot[1] - 1;
+		binary = board[getBoardIndex(nextSpot)];
+	}
+	return nextSpot;
+}
+var moveDownCoords = function(board, location) { 
+	//return [8, location[1]];
+	var destination = [];
+	var nextSpot = location.slice();
+	binary = board[getBoardIndex(nextSpot)];
+	while (!(binary & 4)){
+		nextSpot[1] = nextSpot[1] + 1;
 		binary = board[getBoardIndex(nextSpot)];
 	}
 	return nextSpot;
