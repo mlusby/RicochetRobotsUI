@@ -23,7 +23,33 @@ $(function(){
 			//console.log("Diff x: " + e.offsetX + "\nDiff y: " + e.offsetY );
 		},
 		stop: function(e) {
-			updateRobotLocation($(e.target), boardLayout.redRobot);
+			//boardLayout.redRobot = getRobotLocation($(e.target));
+			// Moving from a to b
+			var h = getRobotLocation($(e.target))[0] - boardLayout.redRobot[0];
+			var v = getRobotLocation($(e.target))[1] - boardLayout.redRobot[1];
+			if (h === v) {
+				setRobotLocation($("#red-robot"),boardLayout.redRobot);
+			}
+			else if (h > 0 && h > v) {
+				var nextSpot = moveRightCoords( boardLayout.board, getRobotLocation( $(e.target) ) );
+				setRobotLocation($(e.target), nextSpot);
+				boardLayout.redRobot = nextSpot;
+			}
+			else if (h < 0 && h < v) {
+				var nextSpot = moveLeftCoords( boardLayout.board, getRobotLocation( $(e.target) ) );
+				setRobotLocation($(e.target), nextSpot);
+				boardLayout.redRobot = nextSpot;
+			}
+			else if (v > 0) {
+				var nextSpot = moveUpCoords( boardLayout.board, getRobotLocation( $(e.target) ) );
+				setRobotLocation($(e.target), nextSpot);
+				boardLayout.redRobot = nextSpot;
+			}
+			else {
+				var nextSpot = moveDownCoords( boardLayout.board, getRobotLocation( $(e.target) ) );
+				setRobotLocation($(e.target), nextSpot);
+				boardLayout.redRobot = nextSpot;
+			}
 		}
 	});
 	$("#yellow-robot").draggable({ containment: "#game-board", scroll: false, grid: [34,34] });
@@ -79,7 +105,23 @@ var setRobotLocation = function(robot, coords) {
 		v = (coords[1] * 34) + 5;
 	robot.css({"left": h, "top": v});
 };
-var updateRobotLocation = function(robot, coords) {
-	coords[0] = (parseInt(robot.css("left")) - 5) / 34 ;
-	coords[1] = (parseInt(robot.css("top")) - 5) / 34 ;
-};
+var getRobotLocation = function (robot) {
+	return [
+		(parseInt(robot.css("left")) - 5) / 34 ,
+		(parseInt(robot.css("top")) - 5) / 34 
+	]
+}
+var moveRightCoords = function(board, location) { 
+	//return [8, location[1]];
+	var destination = [];
+	var nextSpot = location.slice();
+	binary = board[getBoardIndex(nextSpot)];
+	while (!(binary & 2)){
+		nextSpot[0] = nextSpot[0] + 1;
+		binary = board[getBoardIndex(nextSpot)];
+	}
+	return nextSpot;
+}
+var getBoardIndex = function(coords){
+	return [(coords[1] * 16) + coords[0]];
+}
