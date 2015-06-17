@@ -23,7 +23,9 @@ $(function(){
 	$("#yellow-robot").draggable({ containment: "#game-board", scroll: false, grid: [34,34], stop: function(e) { moveRobotToNextEmptySpot(e,"yellowRobot") }});
 	$("#green-robot").draggable({ containment: "#game-board", scroll: false, grid: [34,34], stop: function(e) { moveRobotToNextEmptySpot(e,"greenRobot") }});
 	initBoard(boardLayout);
+	storeMove(moves, boardLayout);
 });
+var moves = [];
 var boardLayout = {
 	blueRobot : [3,1],
 	redRobot : [1,2],
@@ -68,6 +70,16 @@ var initBoard = function (board) {
 		}
 	}
 };
+var storeMove = function (moveArray, board){
+	var cloneBoardLayout = {
+		blueRobot : board.blueRobot.slice(),
+		redRobot : board.redRobot.slice(),
+		yellowRobot : board.yellowRobot.slice(),
+		greenRobot : board.greenRobot.slice(),
+		board : board.board.slice()
+	}
+	moveArray.push(cloneBoardLayout);
+}
 var setRobotLocation = function(robot, coords) {
 	var h = (coords[0] * 34) + 5,
 		v = (coords[1] * 34) + 5;
@@ -80,7 +92,6 @@ var getRobotLocation = function (robot) {
 	]
 }
 var moveRightCoords = function(board, location) { 
-	//return [8, location[1]];
 	var destination = [];
 	var nextSpot = location.slice();
 	binary = board.board[getBoardIndex(nextSpot)];
@@ -94,7 +105,6 @@ var moveRightCoords = function(board, location) {
 	return nextSpot;
 }
 var moveLeftCoords = function(board, location) { 
-	//return [8, location[1]];
 	var destination = [];
 	var nextSpot = location.slice();
 	binary = board.board[getBoardIndex(nextSpot)];
@@ -108,7 +118,6 @@ var moveLeftCoords = function(board, location) {
 	return nextSpot;
 }
 var moveUpCoords = function(board, location) { 
-	//return [8, location[1]];
 	var destination = [];
 	var nextSpot = location.slice();
 	binary = board.board[getBoardIndex(nextSpot)];
@@ -122,7 +131,6 @@ var moveUpCoords = function(board, location) {
 	return nextSpot;
 }
 var moveDownCoords = function(board, location) { 
-	//return [8, location[1]];
 	var destination = [];
 	var nextSpot = location.slice();
 	binary = board.board[getBoardIndex(nextSpot)];
@@ -153,6 +161,10 @@ var coordsContainRobot = function(board, coords){
 	}
 	return false;
 }
+var updateControls = function (){
+	$(".moves-counter").html(moves.length - 1);
+	$(".move-index").html(moves.length - 1);
+}
 var moveRobotToNextEmptySpot = function (e, robot){
 	var map = {
 		"blueRobot":"blue-robot",
@@ -171,20 +183,28 @@ var moveRobotToNextEmptySpot = function (e, robot){
 		setRobotLocation($(e.target), nextSpot);
 		boardLayout.board[getBoardIndex(boardLayout[robot])] 
 		boardLayout[robot] = nextSpot;
+		storeMove(moves, boardLayout);
+		updateControls();
 	}
 	else if (h < 0 && h < v) {
 		var nextSpot = moveLeftCoords( boardLayout, boardLayout[robot] );
 		setRobotLocation($(e.target), nextSpot);
 		boardLayout[robot] = nextSpot;
+		storeMove(moves, boardLayout);
+		updateControls();
 	}
 	else if (v > 0) {
 		var nextSpot = moveDownCoords( boardLayout, boardLayout[robot] );
 		setRobotLocation($(e.target), nextSpot);
 		boardLayout[robot] = nextSpot;
+		storeMove(moves, boardLayout);
+		updateControls();
 	}
 	else {
 		var nextSpot = moveUpCoords( boardLayout, getRobotLocation( $(e.target) ) );
 		setRobotLocation($(e.target), nextSpot);
 		boardLayout[robot] = nextSpot;
+		storeMove(moves, boardLayout);
+		updateControls();
 	}
 }

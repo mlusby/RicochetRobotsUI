@@ -3,10 +3,23 @@
     <link href="stylesheets/style.css" rel="stylesheet">
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-    <script src="/js/jquery.ui.touch-punch.js"></script>
-    <script src="/js/main.js"></script>
+    <script src="js/jquery.ui.touch-punch.js"></script>
+    <script src="js/main.js"></script>
 </head>
 <body>
+<header>
+	<h1>Ricochet Robots</h1>
+</header>
+<div id="game-controls">
+	<button>Previous</button>
+	<button>Next</button>
+	<div>
+		<span class="label moves">Number of Moves: </span><span class="moves-counter">0</span>
+	</div>
+	<div>
+		<span class="label current-move">Current Move: </span><span class="move-index">0</span>
+	</div>
+</div>
 <div id="game-board">
 	<div class="row" id="row1">
 		<span class="box"></span>
