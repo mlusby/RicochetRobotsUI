@@ -24,8 +24,25 @@ $(function(){
 	$("#green-robot").draggable({ containment: "#game-board", scroll: false, grid: [34,34], stop: function(e) { moveRobotToNextEmptySpot(e,"greenRobot") }});
 	initBoard(boardLayout);
 	storeMove(moves, boardLayout);
+	currentMove = 0;
+	updateControls();
+	$(".previous").click(function(){
+		if (!$(this).hasClass("disabled")) {
+			currentMove--;
+			updateControls();
+			initBoard(moves[currentMove]);
+		}
+	});
+	$(".next").click(function(){
+		if (!$(this).hasClass("disabled")) {
+			currentMove++;
+			updateControls();
+			initBoard(moves[currentMove]);
+		}
+	});
 });
 var moves = [];
+var currentMove = 0;
 var boardLayout = {
 	blueRobot : [3,1],
 	redRobot : [1,2],
@@ -79,6 +96,7 @@ var storeMove = function (moveArray, board){
 		board : board.board.slice()
 	}
 	moveArray.push(cloneBoardLayout);
+	currentMove++;
 }
 var setRobotLocation = function(robot, coords) {
 	var h = (coords[0] * 34) + 5,
@@ -163,7 +181,17 @@ var coordsContainRobot = function(board, coords){
 }
 var updateControls = function (){
 	$(".moves-counter").html(moves.length - 1);
-	$(".move-index").html(moves.length - 1);
+	$(".move-index").html(currentMove);
+	if (currentMove == 0) {
+		$(".previous").addClass("disabled");
+	} else {
+		$(".previous").removeClass("disabled");
+	}
+	if (moves.length - 1 == currentMove){
+		$(".next").addClass("disabled");
+	} else {
+		$(".next").removeClass("disabled");
+	}
 }
 var moveRobotToNextEmptySpot = function (e, robot){
 	var map = {

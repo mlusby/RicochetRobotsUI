@@ -209,3 +209,7 @@
   text-decoration: none;
   margin-bottom: 10px;
 }
+/* line 187, ../../sass/style.scss */
+#game-controls button.disabled {
+  opacity: 0.7;
+}
