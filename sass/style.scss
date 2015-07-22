@@ -35,26 +35,36 @@
 	background-image: -webkit-radial-gradient(45px 45px, circle cover, blue, lightblue);
 	left: 47px;
 	top: 13px;
+	z-index: 1000;
 }
 #red-robot
 {
 	background-image: -webkit-radial-gradient(45px 45px, circle cover, red, pink);
 	left: 115px;
 	top: 47px;
+	z-index: 1000;
 }
 #green-robot
 {
 	background-image: -webkit-radial-gradient(45px 45px, circle cover, green, lightgreen);
 	left: 47px;
 	top: 115px;
+	z-index: 1000;
 }
 #yellow-robot
 {
 	background-image: -webkit-radial-gradient(45px 45px, circle cover, orange, yellow);
 	left: 115px;
 	top: 115px;
+	z-index: 1000;
 }
-
+#objective
+{
+	width: 24px;
+	height: 24px;
+	position: absolute;
+	z-index: 1;
+}
 .vwall
 {
 	width: 4px;
