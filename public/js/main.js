@@ -24,34 +24,30 @@ $(function(){
 	$("#green-robot").draggable({ containment: "#game-board", scroll: false, grid: [34,34], stop: function(e) { moveRobotToNextEmptySpot(e,"greenRobot") }});
 	initBoard(boardLayout);
 	storeMove(moves, boardLayout);
-	moves.currentMove = 0;  //Reset current move to zero after initial board setup is stored in moves
+	currentMove = 0;
 	updateControls();
 	$(".previous").click(function(){
 		if (!$(this).hasClass("disabled")) {
-			moves.currentMove--;
+			currentMove--;
 			updateControls();
-			initBoard(moves.moveArray[moves.currentMove]);
+			initBoard(moves[currentMove]);
 		}
 	});
 	$(".next").click(function(){
 		if (!$(this).hasClass("disabled")) {
-			moves.currentMove++;
+			currentMove++;
 			updateControls();
-			initBoard(moves.moveArray[moves.currentMove]);
+			initBoard(moves[currentMove]);
 		}
 	});
 });
-var moves = {
-	moveArray: [],
-	currentMove: 0
-};
+var moves = [];
+var currentMove = 0;
 var boardLayout = {
 	blueRobot : [3,1],
 	redRobot : [1,2],
 	yellowRobot : [3,4],
 	greenRobot : [5,6],
-	objective : [11,6],
-	objectiveRobot : "yellowRobot",
 	board : [
 		9,1,1,3,9,1,1,1,1,5,3,9,1,1,1,3,
 		8,0,0,0,0,2,12,0,0,3,8,0,0,0,0,2,
@@ -72,7 +68,6 @@ var boardLayout = {
 	]
 };
 var initBoard = function (board) {
-	setObjective($("#objective"), board.objective, board.objectiveRobot);
 	setRobotLocation($("#blue-robot"),board.blueRobot);
 	setRobotLocation($("#red-robot"),board.redRobot);
 	setRobotLocation($("#yellow-robot"),board.yellowRobot);
@@ -92,37 +87,22 @@ var initBoard = function (board) {
 		}
 	}
 };
-var storeMove = function (moves, board){
-	moves.moveArray = moves.moveArray.slice(0,moves.currentMove);
+var storeMove = function (moveArray, board){
 	var cloneBoardLayout = {
 		blueRobot : board.blueRobot.slice(),
 		redRobot : board.redRobot.slice(),
 		yellowRobot : board.yellowRobot.slice(),
 		greenRobot : board.greenRobot.slice(),
-		objective : board.objective.slice(),
-		objectiveRobot : board.objectiveRobot,
 		board : board.board.slice()
 	}
-	moves.moveArray.push(cloneBoardLayout);
-	moves.currentMove++;
+	moveArray.push(cloneBoardLayout);
+	currentMove++;
 }
 var setRobotLocation = function(robot, coords) {
 	var h = (coords[0] * 34) + 5,
 		v = (coords[1] * 34) + 5;
 	robot.css({"left": h, "top": v});
 };
-var setObjective = function(objective, coords, objectiveRobot) {
-	var map = {
-		"blueRobot":"blue-robot",
-		"greenRobot":"green-robot",
-		"redRobot":"red-robot",
-		"yellowRobot":"yellow-robot"
-	}
-	var h = (coords[0] * 34) + 5,
-		v = (coords[1] * 34) + 5;
-	objective.css({"left": h, "top": v});
-	objective.css("background-image",$("#"+map[objectiveRobot]).css("background-image"))
-}
 var getRobotLocation = function (robot) {
 	return [
 		(parseInt(robot.css("left")) - 5) / 34 ,
@@ -200,14 +180,14 @@ var coordsContainRobot = function(board, coords){
 	return false;
 }
 var updateControls = function (){
-	$(".moves-counter").html(moves.moveArray.length - 1);
-	$(".move-index").html(moves.currentMove);
-	if (moves.currentMove == 0) {
+	$(".moves-counter").html(moves.length - 1);
+	$(".move-index").html(currentMove);
+	if (currentMove == 0) {
 		$(".previous").addClass("disabled");
 	} else {
 		$(".previous").removeClass("disabled");
 	}
-	if (moves.moveArray.length - 1 == moves.currentMove){
+	if (moves.length - 1 == currentMove){
 		$(".next").addClass("disabled");
 	} else {
 		$(".next").removeClass("disabled");
