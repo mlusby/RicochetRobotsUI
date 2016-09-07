@@ -14,19 +14,11 @@ var params = {
         {
             AttributeName: 'key',
             KeyType: 'HASH'
-        },
-        {
-            AttributeName: "layout",
-            KeyType: "RANGE"
         }
     ],
     AttributeDefinitions: [
         {
             AttributeName: "key",
-            AttributeType: "S"
-        },
-        {
-            AttributeName: "layout",
             AttributeType: "S"
         }
     ],

@@ -1,13 +1,15 @@
 {
-	"name": "node-example",
-	"version": "0.0.1",
-	"dependencies": {
-		"express": "3.1.x",
-		"hbs":"*",
-		"requirejs":"2.1.8"
-	},
-	"engines": {
-	"node": "0.10.x",
-	"npm": "1.2.x"
-	}
+  "name": "node-example",
+  "version": "0.0.1",
+  "dependencies": {
+    "aws-sdk": "^2.5.6",
+    "express": "3.1.x",
+    "hbs": "*",
+    "object-hash": "^1.1.4",
+    "requirejs": "2.1.8"
+  },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.2.x"
+  }
 }
