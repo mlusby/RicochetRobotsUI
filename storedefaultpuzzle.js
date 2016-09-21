@@ -8,7 +8,7 @@ AWS.config.update({
 var docClient = new AWS.DynamoDB.DocumentClient();
 
 var boardLayout = "{"+
-    "blueRobot : [3,1],"+
+    "blueRobot : [9,1],"+
     "redRobot : [1,2],"+
     "yellowRobot : [3,4],"+
     "greenRobot : [5,6],"+
