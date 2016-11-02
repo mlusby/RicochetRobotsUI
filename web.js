@@ -22,7 +22,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/puzzle/:key', function(req, res) {
-    renderPuzzle(req.params.key, res)
+    renderPuzzle(req.params.key, res);
 });
 
 function renderPuzzle(key, res) {
@@ -37,7 +37,7 @@ function renderPuzzle(key, res) {
         if (err) {
             console.error("Unable to read item. Error JSON:", JSON.stringify(err, null, 2));
         } else {
-           res.render('index', {'puzzle': JSON.stringify(data, null, 2)});
+           res.render('index', {'puzzle': JSON.stringify(data.Item.layout, null, 2)});
         }
     });
 }

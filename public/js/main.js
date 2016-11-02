@@ -22,6 +22,7 @@ $(function(){
 	});
 	$("#yellow-robot").draggable({ containment: "#game-board", scroll: false, grid: [34,34], stop: function(e) { moveRobotToNextEmptySpot(e,"yellowRobot") }});
 	$("#green-robot").draggable({ containment: "#game-board", scroll: false, grid: [34,34], stop: function(e) { moveRobotToNextEmptySpot(e,"greenRobot") }});
+	var boardLayout = JSON.parse(JSON.parse(document.getElementById('boardLayout').dataset.boardlayout));
 	initBoard(boardLayout);
 	storeMove(moves, boardLayout);
 	currentMove = 0;
@@ -43,7 +44,7 @@ $(function(){
 });
 var moves = [];
 var currentMove = 0;
-var boardLayout = {
+/*var boardLayout = {
 	blueRobot : [3,1],
 	redRobot : [1,2],
 	yellowRobot : [3,4],
@@ -66,7 +67,7 @@ var boardLayout = {
 		8,0,6,8,0,0,0,0,2,9,0,0,0,0,1,2,
 		12,4,5,6,12,4,4,4,4,4,6,12,4,4,4,6
 	]
-};
+};*/
 var initBoard = function (board) {
 	setRobotLocation($("#blue-robot"),board.blueRobot);
 	setRobotLocation($("#red-robot"),board.redRobot);
