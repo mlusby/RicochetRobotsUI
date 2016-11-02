@@ -17,12 +17,22 @@ app.use(express.bodyParser());
 
 
 app.get('/', function(req, res) {
-    var table = "Puzzles";
     var key = "2dc9e6432ce8b9c159120b4e178dad01859ad428";
-    var params = {};
-    params.TableName = table;
-    params.Key = {};
-    params.Key.key = key;
+    renderPuzzle(key, res);
+});
+
+app.get('/puzzle/:key', function(req, res) {
+    renderPuzzle(req.params.key, res)
+});
+
+function renderPuzzle(key, res) {
+    var table = "Puzzles";
+    var params = {
+        "TableName": table,
+        "Key": {
+            "key": key
+        }
+    };
     docClient.get(params, function(err, data) {
         if (err) {
             console.error("Unable to read item. Error JSON:", JSON.stringify(err, null, 2));
@@ -30,10 +40,10 @@ app.get('/', function(req, res) {
            res.render('index', {'puzzle': JSON.stringify(data, null, 2)});
         }
     });
-});
+}
 
 app.get('/test/:id', function(req, res) {
-      res.render('test',{"id": req.params.id});  
+    res.render('test',{"id": req.params.id});  
 });
 
 var port = process.env.PORT || 5000 ;
