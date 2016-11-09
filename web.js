@@ -37,7 +37,13 @@ function renderPuzzle(key, res) {
         if (err) {
             console.error("Unable to read item. Error JSON:", JSON.stringify(err, null, 2));
         } else {
-           res.render('index', {'puzzle': JSON.stringify(data.Item.layout, null, 2)});
+            if (data && data.Item && data.Item.layout){
+                res.render('index', {'puzzle': JSON.stringify(data.Item.layout, null, 2)});
+            } else {
+                var errMsg = "Unable to read key: " + key;
+                console.error(errMsg);
+                res.status(500).send(errMsg);
+            }
         }
     });
 }
