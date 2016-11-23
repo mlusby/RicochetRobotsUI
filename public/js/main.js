@@ -22,7 +22,7 @@ $(function(){
 	});
 	$("#yellow-robot").draggable({ containment: "#game-board", scroll: false, grid: [34,34], stop: function(e) { moveRobotToNextEmptySpot(e,"yellowRobot") }});
 	$("#green-robot").draggable({ containment: "#game-board", scroll: false, grid: [34,34], stop: function(e) { moveRobotToNextEmptySpot(e,"greenRobot") }});
-	var boardLayout = JSON.parse(JSON.parse(document.getElementById('boardLayout').dataset.boardlayout));
+	window.boardLayout = JSON.parse(sessionStorage.boardLayout);
 	initBoard(boardLayout);
 	storeMove(moves, boardLayout);
 	currentMove = 0;

@@ -38,7 +38,7 @@ function renderPuzzle(key, res) {
             console.error("Unable to read item. Error JSON:", JSON.stringify(err, null, 2));
         } else {
             if (data && data.Item && data.Item.layout){
-                res.render('index', {'puzzle': JSON.stringify(data.Item.layout, null, 2)});
+                res.render('index', {'puzzle': data.Item.layout});
             } else {
                 var errMsg = "Unable to read key: " + key;
                 console.error(errMsg);
