@@ -17,7 +17,7 @@ app.use(express.bodyParser());
 
 
 app.get('/', function(req, res) {
-    var key = "2dc9e6432ce8b9c159120b4e178dad01859ad428";
+    var key = "6cb44b029b4b55fb2b03eda4ec5f96f4da010e07";
     renderPuzzle(key, res);
 });
 
