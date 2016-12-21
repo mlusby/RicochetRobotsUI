@@ -1,13 +1,15 @@
 $(function(){
 	
-	var moves = [];
-	var currentMove = 0;
+	var moves = {
+		moveArray: [],
+		currentMove: 0
+	};
 	$("#blue-robot").draggable({
 		containment: "#game-board",
 		scroll: false,
 		grid: [34,34] ,
 		stop: function(e){
-			moveRobotToNextEmptySpot(e, "blueRobot", moves, currentMove)
+			moveRobotToNextEmptySpot(e, "blueRobot", moves)
 		}
 	});
 	$("#red-robot").draggable({
@@ -15,7 +17,7 @@ $(function(){
 		scroll: false, 
 		grid: [34,34], 
 		stop: function(e) {
-			moveRobotToNextEmptySpot(e,"redRobot", moves, currentMove)
+			moveRobotToNextEmptySpot(e,"redRobot", moves)
 		}
 	});
 	$("#yellow-robot").draggable({
@@ -23,7 +25,7 @@ $(function(){
 		scroll: false,
 		grid: [34,34],
 		stop: function(e) { 
-			moveRobotToNextEmptySpot(e,"yellowRobot", moves, currentMove) 
+			moveRobotToNextEmptySpot(e,"yellowRobot", moves) 
 		}
 	});
 	$("#green-robot").draggable({
@@ -31,25 +33,26 @@ $(function(){
 		scroll: false,
 		grid: [34,34],
 		stop: function(e) {
-			moveRobotToNextEmptySpot(e,"greenRobot", moves, currentMove)
+			moveRobotToNextEmptySpot(e,"greenRobot", moves)
 		}
 	});
 	window.boardLayout = JSON.parse(sessionStorage.boardLayout);
 	initBoard(boardLayout);
-	storeMove(moves, boardLayout, currentMove);
+	storeMove(moves, boardLayout);
+	moves.currentMove = 0;
 	updateUIControls(moves);
 	$(".previous").click(function(){
 		if (!$(this).hasClass("disabled")) {
-			currentMove--;
+			moves.currentMove--;
 			updateUIControls(moves);
-			initBoard(moves[currentMove]);
+			initBoard(moves.moveArray[moves.currentMove]);
 		}
 	});
 	$(".next").click(function(){
 		if (!$(this).hasClass("disabled")) {
-			currentMove++;
+			moves.currentMove++;
 			updateUIControls(moves);
-			initBoard(moves[currentMove]);
+			initBoard(moves.moveArray[moves.currentMove]);
 		}
 	});
 });
@@ -74,7 +77,7 @@ var initBoard = function (board) {
 		}
 	}
 };
-var storeMove = function (moveArray, board, currentMove){
+var storeMove = function (moves, board){
 	var cloneBoardLayout = {
 		blueRobot : board.blueRobot.slice(),
 		redRobot : board.redRobot.slice(),
@@ -82,8 +85,8 @@ var storeMove = function (moveArray, board, currentMove){
 		greenRobot : board.greenRobot.slice(),
 		board : board.board.slice()
 	}
-	moveArray.push(cloneBoardLayout);
-	currentMove++;
+	moves.moveArray.push(cloneBoardLayout);
+	moves.currentMove++;
 }
 var setRobotLocation = function(robot, coords) {
 	var h = (coords[0] * 34) + 5,
@@ -166,21 +169,21 @@ var coordsContainRobot = function(board, coords){
 	}
 	return false;
 }
-var updateUIControls = function (moves, currentMove){
-	$(".moves-counter").html(moves.length - 1);
-	$(".move-index").html(currentMove);
-	if (currentMove == 0) {
+var updateUIControls = function (moves){
+	$(".moves-counter").html(moves.moveArray.length - 1);
+	$(".move-index").html(moves.currentMove);
+	if (moves.currentMove == 0) {
 		$(".previous").addClass("disabled");
 	} else {
 		$(".previous").removeClass("disabled");
 	}
-	if (moves.length - 1 == currentMove){
+	if (moves.moveArray.length - 1 == moves.currentMove){
 		$(".next").addClass("disabled");
 	} else {
 		$(".next").removeClass("disabled");
 	}
 }
-var moveRobotToNextEmptySpot = function (e, robot, moves, currentMove){
+var moveRobotToNextEmptySpot = function (e, robot, moves){
 	var map = {
 		"blueRobot":"blue-robot",
 		"greenRobot":"green-robot",
@@ -198,28 +201,28 @@ var moveRobotToNextEmptySpot = function (e, robot, moves, currentMove){
 		setRobotLocation($(e.target), nextSpot);
 		boardLayout.board[getBoardIndex(boardLayout[robot])] 
 		boardLayout[robot] = nextSpot;
-		storeMove(moves, boardLayout, currentMove);
+		storeMove(moves, boardLayout);
 		updateUIControls(moves);
 	}
 	else if (h < 0 && h < v) {
 		var nextSpot = moveLeftCoords( boardLayout, boardLayout[robot] );
 		setRobotLocation($(e.target), nextSpot);
 		boardLayout[robot] = nextSpot;
-		storeMove(moves, boardLayout, currentMove);
+		storeMove(moves, boardLayout);
 		updateUIControls(moves);
 	}
 	else if (v > 0) {
 		var nextSpot = moveDownCoords( boardLayout, boardLayout[robot] );
 		setRobotLocation($(e.target), nextSpot);
 		boardLayout[robot] = nextSpot;
-		storeMove(moves, boardLayout, currentMove);
+		storeMove(moves, boardLayout);
 		updateUIControls(moves);
 	}
 	else {
 		var nextSpot = moveUpCoords( boardLayout, getRobotLocation( $(e.target) ) );
 		setRobotLocation($(e.target), nextSpot);
 		boardLayout[robot] = nextSpot;
-		storeMove(moves, boardLayout, currentMove);
+		storeMove(moves, boardLayout);
 		updateUIControls(moves);
 	}
 }
