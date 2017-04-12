@@ -6,7 +6,8 @@ http://www.marklusby.com/RicochetRobotsUI/
 
 <h3>Getting Started</h3>
 Run the following
-``` 
+
+```
 npm install
 node web.js
 ```
